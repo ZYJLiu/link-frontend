@@ -27,9 +27,11 @@ export const ConnectPublicKey: FC = () => {
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-          <button className="px-2 m-1 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-200 hover:to-yellow-500 ...">
-            <Link href={key}>New Link</Link>
-          </button>
+          <Link href={key}>
+            <button className="px-2 m-1 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-200 hover:to-yellow-500 ...">
+              New Link
+            </button>
+          </Link>
         </div>
       </div>
     </div>
