@@ -77,16 +77,7 @@ export const AppBar: FC = (props) => {
         {/* Wallet & Settings */}
         <div className="navbar-end">
           <Link href="/">
-            <a className="mr-8">Connect</a>
-          </Link>
-          <Link href="/merchants">
-            <a className="mr-8">Display</a>
-          </Link>
-          <Link href="/create">
-            <a className="mr-8">Create Token</a>
-          </Link>
-          <Link href="/update">
-            <a className="mr-8">Update Metadata</a>
+            <a className="mr-8">Create</a>
           </Link>
           <div className="dropdown">
             <div tabIndex={0} className="btn btn-square btn-ghost text-right">
