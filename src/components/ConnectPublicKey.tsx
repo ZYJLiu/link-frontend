@@ -5,23 +5,42 @@ import { PublicKey, Keypair } from "@solana/web3.js"
 import Link from "next/link"
 
 export const ConnectPublicKey: FC = () => {
-  const keypair = Keypair.generate()
-  const key = Buffer.from(keypair.secretKey).toString("hex")
-  console.log("PublicKey", keypair.publicKey.toString())
+  const [key, setKey] = useState("")
 
-  // const aes256 = require(`aes256`)
-  // console.log("SecretKey", keypair.secretKey)
-  // console.log("PubKey", keypair.publicKey.toString())
+  const mapping = {
+    a: [0, 0, 0, 0],
+    b: [0, 0, 0, 1],
+    c: [0, 0, 0, 2],
+    d: [0, 0, 0, 3],
+    e: [0, 0, 0, 4],
+    f: [0, 0, 0, 5],
+    g: [0, 0, 0, 6],
+    h: [0, 0, 0, 7],
+  }
 
-  // const encrypted = aes256.encrypt("test", Buffer.from(keypair.secretKey))
-  // console.log("Encrypted", encrypted.toString())
+  function generateURLandKeypair() {
+    let seed = []
+    let url = ""
 
-  // const decrypted = aes256.decrypt("test", encrypted)
-  // console.log("Decrypted", decrypted)
+    for (let i = 0; i < 8; i++) {
+      let rand = Math.floor(Math.random() * 8) //0-7
+      let key = String.fromCharCode("a".charCodeAt() + rand) // random letter from 'a'-'h'
+      url += key
 
-  // const secret = Uint8Array.from(decrypted)
-  // const kp = Keypair.fromSecretKey(secret)
-  // console.log("New Pubkey", kp.publicKey.toString())
+      const u8s = mapping[key]
+      seed = seed.concat(u8s)
+    }
+
+    setKey(url)
+    console.log("url:", url)
+
+    const keypair = Keypair.fromSeed(new Uint8Array(seed))
+    console.log("public key:", keypair.publicKey.toString())
+  }
+
+  useEffect(() => {
+    generateURLandKeypair()
+  }, [])
 
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">

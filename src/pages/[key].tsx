@@ -39,21 +39,37 @@ export default function Promo() {
 
   const router = useRouter()
   const { key } = router.query
-  console.log(key)
 
   const { publicKey, sendTransaction } = useWallet()
   const connection = useConnection()
 
+  const mapping = {
+    a: [0, 0, 0, 0],
+    b: [0, 0, 0, 1],
+    c: [0, 0, 0, 2],
+    d: [0, 0, 0, 3],
+    e: [0, 0, 0, 4],
+    f: [0, 0, 0, 5],
+    g: [0, 0, 0, 6],
+    h: [0, 0, 0, 7],
+  }
+
+  function generateKeypair() {
+    let seed = []
+
+    for (let i = 0; i < key.length; i++) {
+      const u8s = mapping[key[i]]
+      seed = seed.concat(u8s)
+    }
+    const keypair = Keypair.fromSeed(new Uint8Array(seed))
+    setKeypair(keypair)
+    console.log("public key:", keypair.publicKey.toString())
+  }
+
   useEffect(() => {
     if (!router.isReady) return
 
-    const hex = new String(key)
-
-    const buffer = Uint8Array.from(Buffer.from(hex, "hex"))
-
-    const keypair = Keypair.fromSecretKey(buffer)
-    console.log("Pubkey", keypair.publicKey.toString())
-    setKeypair(keypair)
+    generateKeypair()
   }, [router.isReady])
 
   useEffect(() => {
