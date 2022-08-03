@@ -23,6 +23,7 @@ import {
 import { useWallet, useConnection } from "@solana/wallet-adapter-react"
 import styles from "../styles/Home.module.css"
 import { usdcAddress } from "../lib/addresses"
+import { mapping } from "../lib/mapping"
 
 export default function Promo() {
   const [balance, setBalance] = useState(0)
@@ -43,16 +44,16 @@ export default function Promo() {
   const { publicKey, sendTransaction } = useWallet()
   const connection = useConnection()
 
-  const mapping = {
-    a: [0, 0, 0, 0],
-    b: [0, 0, 0, 1],
-    c: [0, 0, 0, 2],
-    d: [0, 0, 0, 3],
-    e: [0, 0, 0, 4],
-    f: [0, 0, 0, 5],
-    g: [0, 0, 0, 6],
-    h: [0, 0, 0, 7],
-  }
+  // const mapping = {
+  //   a: [0, 0, 0, 0],
+  //   b: [0, 0, 0, 1],
+  //   c: [0, 0, 0, 2],
+  //   d: [0, 0, 0, 3],
+  //   e: [0, 0, 0, 4],
+  //   f: [0, 0, 0, 5],
+  //   g: [0, 0, 0, 6],
+  //   h: [0, 0, 0, 7],
+  // }
 
   function generateKeypair() {
     let seed = []

@@ -1,30 +1,32 @@
 import { FC, useState, useEffect, useRef, useCallback } from "react"
 import { useWallet, useConnection } from "@solana/wallet-adapter-react"
 import { PublicKey, Keypair } from "@solana/web3.js"
+import { mapping, letters } from "../lib/mapping"
 
 import Link from "next/link"
 
 export const ConnectPublicKey: FC = () => {
   const [key, setKey] = useState("")
 
-  const mapping = {
-    a: [0, 0, 0, 0],
-    b: [0, 0, 0, 1],
-    c: [0, 0, 0, 2],
-    d: [0, 0, 0, 3],
-    e: [0, 0, 0, 4],
-    f: [0, 0, 0, 5],
-    g: [0, 0, 0, 6],
-    h: [0, 0, 0, 7],
-  }
+  // const mapping = {
+  //   a: [0, 0, 0, 0],
+  //   b: [0, 0, 0, 1],
+  //   c: [0, 0, 0, 2],
+  //   d: [0, 0, 0, 3],
+  //   e: [0, 0, 0, 4],
+  //   f: [0, 0, 0, 5],
+  //   g: [0, 0, 0, 6],
+  //   h: [0, 0, 0, 7],
+  // }
 
   function generateURLandKeypair() {
     let seed = []
     let url = ""
 
     for (let i = 0; i < 8; i++) {
-      let rand = Math.floor(Math.random() * 8) //0-7
-      let key = String.fromCharCode("a".charCodeAt() + rand) // random letter from 'a'-'h'
+      let rand = Math.floor(Math.random() * 62)
+      let key = letters[rand]
+      console.log(key)
       url += key
 
       const u8s = mapping[key]
@@ -34,8 +36,8 @@ export const ConnectPublicKey: FC = () => {
     setKey(url)
     console.log("url:", url)
 
-    const keypair = Keypair.fromSeed(new Uint8Array(seed))
-    console.log("public key:", keypair.publicKey.toString())
+    // const keypair = Keypair.fromSeed(new Uint8Array(seed))
+    // console.log("public key:", keypair.publicKey.toString())
   }
 
   useEffect(() => {
