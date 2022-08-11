@@ -46,7 +46,7 @@ const QrScanner = ({ keypair }: props) => {
     const decodedTx = Buffer.from(transaction, "base64");
     const tx = Transaction.from(decodedTx);
     await connection.sendTransaction(tx, [keypair]);
-    setData(scanData);
+    setData("Scanned");
   };
 
   return (
