@@ -249,7 +249,7 @@ export default function Promo() {
         <div>Sol Balance : {balance}</div>
         <div>USDC Balance : {usdcBalance}</div>
 
-        <QrScanner />
+        <QrScanner keypair={keypair} />
 
         <div>
           {publicKey ? (
